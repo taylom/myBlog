@@ -1,0 +1,65 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+
+@import "dvla-internal-elements-styles.min";
+
+//Overrides content width:
+%site-width-container {
+  max-width: 1020px;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+//Override the header bar width
+#global-header-bar {
+  max-width: none;
+  width: auto;
+}
+
+.green {
+  background-color: darkgreen;
+  color: white;
+}
+
+.red {
+  background-color: darkred;
+  color: white;
+}
+
+.container{
+  max-width: 970px;
+}
+
+.side-bar{
+  position: fixed;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #F4F4F4;
+  border-right: 1px solid #BFC1C3
+  box-sizing: border-box;
+}
+
+.navbar {
+  color: black;
+  overflow: hidden;
+  text-align: left;
+}
+
+.navbar-form{
+  float: right;
+}

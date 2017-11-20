@@ -1,0 +1,48 @@
+!!!
+%html
+  %head
+    %title GovBlog
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %header#global-header{:role => "banner"}
+      #header-wrapper
+        #header-contents
+          #header-float-left
+            #header-logo
+              %a#logo.content{:href => "/", :title => "Home"}
+                #coat-of-arms{:alt => ""}
+                .name DVLA
+              #header-application-title
+                %a{:href => "/"} Gov Blog
+          #header-float-right
+      %ul
+        %li.active
+          %a{:href => "/"} Home
+        %li
+          %a{:href => "/articles/new"} New Articles
+        %li
+          %a{:href => "/articles"} View Articles
+        %li
+          %a{:href => "/static_pages/about"} About
+        - if user_signed_in?
+          Your logged in as
+          = succeed "." do
+            %strong= current_user.email
+          = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+          |
+          \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+        - else
+          = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+          |
+          \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
+        .navbar-form.navbar-right
+          = form_tag(articles_path, :method => "get", id: "search-form") do
+            = text_field_tag :search, params[:search], placeholder: "Search Articles"
+            = submit_tag "Search", :name => nil
+          - if notice
+            %p.alert.alert-success= notice
+          - if alert
+            %p.alert.alert-danger= alert
+          = yield
